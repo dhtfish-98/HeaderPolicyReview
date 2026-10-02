@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 import json
+import re
 from urllib.parse import urlsplit
 
 
@@ -35,7 +36,8 @@ def review_text(text: str) -> list[dict[str, str]]:
             findings.append({"rule": rule, "location": where, "note": note})
         if urlsplit(url).scheme.lower() == "https":
             hsts = names.get("strict-transport-security", "")
-            if not hsts or "max-age=0" in hsts.replace(" ", ""):
+            max_age = re.search(r"(?:^|;)\s*max-age\s*=\s*(\d+)(?:\s*;|$)", hsts)
+            if not max_age or int(max_age.group(1)) == 0:
                 add("hsts-review", "HTTPS response lacks an active HSTS declaration")
         if "text/html" in names.get("content-type", ""):
             if "content-security-policy" not in names:
