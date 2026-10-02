@@ -16,7 +16,7 @@ python cli.py ./owned-input --json
 python -m unittest discover -s tests -v
 ```
 
-Exit code 0 means no findings, 1 means review findings, 2 means invalid input or read failure. A clean result is not a security guarantee. The file input limit is 4 MiB; ArtifactDigestReview also limits each artifact to 128 MiB.
+Exit code 0 means no findings, 1 means review findings, 2 means invalid input or read failure. A clean result is not a security guarantee. The input file is read through a bounded regular-file descriptor with a 4 MiB limit.
 
 ## Boundaries
 
@@ -27,3 +27,9 @@ A HAR may contain sensitive data; use a scrubbed export. This tool does not issu
 - Technical reference: https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html
 - See [ORIGIN.md](ORIGIN.md) for implementation provenance and [VALIDATION.md](VALIDATION.md) for checks performed.
 - CVP eligibility depends on a real, legitimate defensive task affected by Claude's cyber safeguards and the applicant's organization/identity review; this repository alone does not establish eligibility or approval. [Anthropic CVP guidance](https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet).
+
+## Reviewed input behavior
+
+Malformed HAR header records are errors. Empty CSP, repeated security headers, disabled/ambiguous HSTS, and HTML MIME metadata are reviewed. No policy strength or browser enforcement verdict is produced.
+
+JSON input rejects duplicate object keys and nonstandard numbers; container nesting is limited to 128 levels.
