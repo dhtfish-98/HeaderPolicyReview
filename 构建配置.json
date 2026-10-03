@@ -1,0 +1,30 @@
+{
+  "schema": "project-build-layout.v1",
+  "project": "HeaderPolicyReview",
+  "author": "dhtfish98",
+  "kind": "manual",
+  "base_public_commit": "e66139f8026359781fffae08cc5a644bb5b459dc",
+  "restored_inputs": [
+    {
+      "original": "LICENSE",
+      "stored": "项目文档/LICENSE",
+      "sha256": "61cc81f0067016c9425160ac683a0791c1f9332a48ffe655d21b2602286e21be"
+    },
+    {
+      "original": "ORIGIN.md",
+      "stored": "项目文档/ORIGIN.md",
+      "sha256": "72fb84e633a123ec626f9f860b5f8c42d3cdb5ce8951624ddcef516597177dc3"
+    },
+    {
+      "original": "README.md",
+      "stored": "项目文档/README.md",
+      "sha256": "0cf798cc72e17d4f3e9567178e2f1ede1cac52d0d3fc8f828592883607dac71b"
+    },
+    {
+      "original": "VALIDATION.md",
+      "stored": "项目文档/VALIDATION.md",
+      "sha256": "242069fa0089d25d87b2780cb89c3ebd987ed7301cbd3b6802e10fccfd2524f4"
+    }
+  ],
+  "platform_entries": []
+}
