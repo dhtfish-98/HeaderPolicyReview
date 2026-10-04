@@ -1,5 +1,9 @@
 # Validation record
 
+## Version 0.1.2 maintenance
+
+The descriptor-ownership failure path was checked with a synthetic local file and a forced stream-construction error. The current source suite passed on Python 3.14.6 before publication; exact counts and public CI belong in the delivery receipt. This check does not exercise a live target.
+
 ## Version 0.1.1 maintenance
 
 The HSTS declaration parser and version display were checked against synthetic local HAR input on Python 3.14.6. The source suite passed in the independent current-HEAD checkout before publication; the exact test count and public-commit CI must be recorded with the delivery receipt. This does not prove browser enforcement, live-site behavior, or CVP approval.

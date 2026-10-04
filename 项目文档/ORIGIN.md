@@ -5,3 +5,5 @@ HeaderPolicyReview is a new, standalone implementation for this defensive review
 This statement concerns repository provenance only. It does not establish independent security findings, CVP qualification, or approval. The applicant must verify their own contribution and authorization for any submitted evidence.
 
 Version 0.1.1 maintenance by dhtfish98 adds finite RFC 6797 syntax review for the local HSTS declaration. It does not claim browser enforcement or full policy quality.
+
+Version 0.1.2 maintenance by dhtfish98 closes the input descriptor if stream construction fails. It does not change the review rules.

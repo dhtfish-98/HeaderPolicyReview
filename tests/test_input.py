@@ -1,11 +1,33 @@
+import errno
 import os
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 from local_input import read_local_file
 
 
 class InputTests(unittest.TestCase):
+    def test_failed_stream_construction_closes_descriptor(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "input"
+            path.write_bytes(b"owned local input")
+            descriptor = os.open(path, os.O_RDONLY)
+            try:
+                with patch("local_input.os.open", return_value=descriptor), patch(
+                    "local_input.os.fdopen", side_effect=OSError("stream unavailable")
+                ):
+                    with self.assertRaisesRegex(OSError, "stream unavailable"):
+                        read_local_file(path)
+                with self.assertRaises(OSError) as closed:
+                    os.fstat(descriptor)
+                self.assertEqual(closed.exception.errno, errno.EBADF)
+            finally:
+                try:
+                    os.close(descriptor)
+                except OSError:
+                    pass
+
     def test_oversized_link_and_nonregular_inputs(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder)
