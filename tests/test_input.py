@@ -8,6 +8,25 @@ from local_input import read_local_file
 
 
 class InputTests(unittest.TestCase):
+    def test_stream_failure_after_descriptor_closure_preserves_original_error(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "input"
+            path.write_bytes(b"owned local input")
+            descriptor = os.open(path, os.O_RDONLY)
+
+            def fail_after_close(value, mode):
+                os.close(value)
+                raise ValueError("stream failed after close")
+
+            with patch("local_input.os.open", return_value=descriptor), patch(
+                "local_input.os.fdopen", side_effect=fail_after_close
+            ):
+                with self.assertRaisesRegex(ValueError, "stream failed after close"):
+                    read_local_file(path)
+            with self.assertRaises(OSError) as closed:
+                os.fstat(descriptor)
+            self.assertEqual(closed.exception.errno, errno.EBADF)
+
     def test_failed_stream_construction_closes_descriptor(self):
         with tempfile.TemporaryDirectory() as folder:
             path = Path(folder) / "input"

@@ -13,7 +13,7 @@ class CLITests(unittest.TestCase):
         with contextlib.redirect_stdout(output), self.assertRaises(SystemExit) as exit_status:
             main(["--version"])
         self.assertEqual(exit_status.exception.code, 0)
-        self.assertTrue(output.getvalue().strip().endswith(" 0.1.2"))
+        self.assertTrue(output.getvalue().strip().endswith(" 0.1.3"))
 
     def test_finding_json_and_invalid_path(self):
         with tempfile.TemporaryDirectory() as folder:

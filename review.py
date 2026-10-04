@@ -6,7 +6,7 @@ from strict_json import loads
 
 RELEVANT = {"content-type", "strict-transport-security", "content-security-policy", "x-content-type-options"}
 _TOKEN_SEPARATORS = frozenset('()<>@,;:/[]?={} \t') | frozenset(('"', "\\"))
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 
 def _active_hsts(value: str) -> bool:

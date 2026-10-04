@@ -1,5 +1,9 @@
 # Validation record
 
+## Version 0.1.3 maintenance
+
+The synthetic failure-path regression checks both an unclaimed input descriptor and a stream constructor that closes the descriptor before raising. In the latter case the original exception remains visible. This check does not exercise a live target.
+
 ## Version 0.1.2 maintenance
 
 The descriptor-ownership failure path was checked with a synthetic local file and a forced stream-construction error. The current source suite passed on Python 3.14.6 before publication; exact counts and public CI belong in the delivery receipt. This check does not exercise a live target.

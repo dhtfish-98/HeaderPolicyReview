@@ -2,7 +2,7 @@
 
 # HeaderPolicyReview
 
-Current source version: **0.1.2**. Use `python cli.py --version` to check the installed source.
+Current source version: **0.1.3**. Use `python cli.py --version` to check the installed source.
 
 Review declared security headers in a local HTTP Archive export. It runs locally, does not contact targets, and reports review prompts instead of exploit instructions.
 
