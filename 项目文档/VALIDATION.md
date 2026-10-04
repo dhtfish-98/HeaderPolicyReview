@@ -1,5 +1,9 @@
 # Validation record
 
+## Version 0.1.1 maintenance
+
+The HSTS declaration parser and version display were checked against synthetic local HAR input on Python 3.14.6. The source suite passed in the independent current-HEAD checkout before publication; the exact test count and public-commit CI must be recorded with the delivery receipt. This does not prove browser enforcement, live-site behavior, or CVP approval.
+
 Scope: Absent or disabled HSTS for HTTPS and absent CSP/nosniff for HTML.
 
 Local checks to rerun:

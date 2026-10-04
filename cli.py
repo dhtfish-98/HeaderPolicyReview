@@ -14,6 +14,7 @@ def main(argv=None) -> int:
     parser.add_argument("input", type=Path, help="local authorized input")
 
     parser.add_argument("--json", action="store_true", help="emit JSON findings")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {review.__version__}")
     args = parser.parse_args(argv)
     input_path = args.input
     try:

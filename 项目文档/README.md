@@ -2,6 +2,8 @@
 
 # HeaderPolicyReview
 
+Current source version: **0.1.1**. Use `python cli.py --version` to check the installed source.
+
 Review declared security headers in a local HTTP Archive export. It runs locally, does not contact targets, and reports review prompts instead of exploit instructions.
 
 ## Input and checks
@@ -33,5 +35,7 @@ A HAR may contain sensitive data; use a scrubbed export. This tool does not issu
 ## Reviewed input behavior
 
 Malformed HAR header records are errors. Empty CSP, repeated security headers, disabled/ambiguous HSTS, and HTML MIME metadata are reviewed. No policy strength or browser enforcement verdict is produced.
+
+The HSTS declaration review conservatively checks one HAR field against RFC 6797 directive syntax: unique case-insensitive names, a positive ASCII `max-age` value (quoted or unquoted), and valueless `includeSubDomains`. Unknown syntactically valid directives and legacy CRLF folding followed by space or tab are accepted; unsupported control characters are flagged for review. It cannot establish whether a browser accepted or enforced the policy. [RFC 6797 section 6.1](https://www.rfc-editor.org/rfc/rfc6797#section-6.1).
 
 JSON input rejects duplicate object keys and nonstandard numbers; container nesting is limited to 128 levels.

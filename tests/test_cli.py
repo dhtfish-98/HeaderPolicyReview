@@ -8,6 +8,13 @@ from cli import main
 
 
 class CLITests(unittest.TestCase):
+    def test_version_without_input(self):
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output), self.assertRaises(SystemExit) as exit_status:
+            main(["--version"])
+        self.assertEqual(exit_status.exception.code, 0)
+        self.assertTrue(output.getvalue().strip().endswith(" 0.1.1"))
+
     def test_finding_json_and_invalid_path(self):
         with tempfile.TemporaryDirectory() as folder:
             path = Path(folder) / "input"
