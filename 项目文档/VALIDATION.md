@@ -1,5 +1,9 @@
 # Validation record
 
+## Version 0.1.4 maintenance
+
+This release synchronizes the already-corrected self-owned copyright display name, source version and release tag. It does not change the review rules. The source test and archive results for this exact commit are recorded in the independent release receipt.
+
 ## Version 0.1.3 maintenance
 
 The synthetic failure-path regression checks both an unclaimed input descriptor and a stream constructor that closes the descriptor before raising. In the latter case the original exception remains visible. This check does not exercise a live target.
